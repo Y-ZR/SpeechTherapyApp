@@ -61,7 +61,9 @@ struct ContentView: View {
                 case .secondScreen(let name):
                     SecondScreenView(name: name, path: $path)
                 case .dashboard(let name):
-                    DashboardView(username: name)
+                    DashboardView(username: name, path: $path)
+                case .wordPinataGame:
+                    WordPinataGameView()
                 }
             }
         }

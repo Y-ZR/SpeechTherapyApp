@@ -2,6 +2,7 @@ import SwiftUI
 
 struct DashboardView: View {
     var username: String
+    @Binding var path: [Destination]
     @State private var showComingSoonAlert: Bool = false
 
     var body: some View {
@@ -41,7 +42,7 @@ struct DashboardView: View {
                                 emoji: "🪅",
                                 buttonText: "Play Now! 🎮",
                                 buttonAction: {
-                                    print("Word Piñata selected")
+                                    path.append(.wordPinataGame)
                                 },
                                 isActive: true
                             )
@@ -152,5 +153,5 @@ struct CardView: View {
 
 
 #Preview {
-    DashboardView(username: "Zack")
+    DashboardView(username: "Zack", path: .constant([]))
 }
