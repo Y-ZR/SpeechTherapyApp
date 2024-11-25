@@ -1,21 +1,17 @@
-//
-//  SecondScreenView.swift
-//  SpeechTherapyApp
-//
-//  Created by Your Name on 24/11/24.
-//
-
 import SwiftUI
 
 struct SecondScreenView: View {
     var name: String // Receive the nickname passed from the previous page
+    @Binding var path: [Destination] // Binding to the navigation path
     @State private var numericValue: Int = 5 // Default value for numeric input
     @State private var selectedEmoji: String? // State variable for selected emoji
 
     var body: some View {
         ZStack {
             // Background gradient
-            LinearGradient(gradient: Gradient(colors: [Color(red: 1.0, green: 0.82, blue: 0.86), Color(red: 0.9, green: 0.9, blue: 1.0)]), startPoint: .top, endPoint: .bottom)
+            LinearGradient(gradient: Gradient(colors: [Color(red: 1.0, green: 0.82, blue: 0.86),
+                                                       Color(red: 0.9, green: 0.9, blue: 1.0)]),
+                           startPoint: .top, endPoint: .bottom)
                 .edgesIgnoringSafeArea(.all)
 
             VStack(spacing: 20) {
@@ -25,7 +21,7 @@ struct SecondScreenView: View {
                         .font(.system(size: 34, weight: .bold, design: .rounded))
                         .foregroundColor(.purple)
                         .multilineTextAlignment(.center)
-                    
+
                     Text("tell us more!")
                         .font(.system(size: 34, weight: .bold, design: .rounded))
                         .foregroundColor(.purple)
@@ -37,15 +33,15 @@ struct SecondScreenView: View {
                     Text("I am")
                         .font(.system(size: 24, weight: .medium, design: .rounded))
                         .foregroundColor(.black)
-                    
+
                     Text("\(numericValue)")
                         .font(.system(size: 24, weight: .bold, design: .rounded))
                         .foregroundColor(.purple)
-                    
+
                     Text("years old")
                         .font(.system(size: 24, weight: .medium, design: .rounded))
                         .foregroundColor(.black)
-                    
+
                     Stepper("", value: $numericValue, in: 0...100)
                         .labelsHidden() // Hides the label so only buttons are visible
                         .padding(.leading, 10)
@@ -67,7 +63,8 @@ struct SecondScreenView: View {
 
                 // Next Button
                 Button(action: {
-                    print("Numeric Value: \(numericValue), Selected Emoji: \(selectedEmoji ?? "None")")
+                    // Navigate to DashboardView
+                    path.append(.dashboard(name: name))
                 }) {
                     Text("Next 🎨")
                         .font(.system(size: 18, weight: .medium, design: .rounded))
@@ -107,5 +104,5 @@ struct EmojiButton: View {
 }
 
 #Preview {
-    SecondScreenView(name: "John") // Pass a sample name for preview
+    SecondScreenView(name: "John", path: .constant([])) // Pass a sample name and empty path for preview
 }

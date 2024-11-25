@@ -1,5 +1,4 @@
 //
-//  ContentView.swift
 //  SpeechTherapyApp
 //
 //  Created by Yong Zhong Rong on 24/11/24.
@@ -9,13 +8,15 @@ import SwiftUI
 
 struct ContentView: View {
     @State private var nickname: String = "" // State variable for nickname input
-    @State private var path: [String] = [] // Path array for navigation stack
+    @State private var path: [Destination] = [] // Path array for navigation stack
 
     var body: some View {
         NavigationStack(path: $path) { // Bind the path to NavigationStack
             ZStack {
                 // Background gradient
-                LinearGradient(gradient: Gradient(colors: [Color(red: 1.0, green: 0.82, blue: 0.86), Color(red: 0.9, green: 0.9, blue: 1.0)]), startPoint: .top, endPoint: .bottom)
+                LinearGradient(gradient: Gradient(colors: [Color(red: 1.0, green: 0.82, blue: 0.86),
+                                                           Color(red: 0.9, green: 0.9, blue: 1.0)]),
+                               startPoint: .top, endPoint: .bottom)
                     .edgesIgnoringSafeArea(.all)
 
                 VStack(spacing: 20) {
@@ -36,7 +37,7 @@ struct ContentView: View {
                     // Next Button
                     Button(action: {
                         if !nickname.isEmpty {
-                            path.append(nickname) // Append nickname to path for navigation
+                            path.append(.secondScreen(name: nickname)) // Navigate to SecondScreenView
                         }
                     }) {
                         Text("Next 🚀")
@@ -55,8 +56,13 @@ struct ContentView: View {
                 .shadow(radius: 10)
                 .padding()
             }
-            .navigationDestination(for: String.self) { name in
-                SecondScreenView(name: name)
+            .navigationDestination(for: Destination.self) { destination in
+                switch destination {
+                case .secondScreen(let name):
+                    SecondScreenView(name: name, path: $path)
+                case .dashboard(let name):
+                    DashboardView(username: name)
+                }
             }
         }
     }
