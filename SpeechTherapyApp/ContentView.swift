@@ -44,7 +44,7 @@ struct ContentView: View {
                             .font(.system(size: 18, weight: .medium, design: .rounded))
                             .foregroundColor(.white)
                             .padding()
-                            .background(nickname.isEmpty ? Color.gray : Color(red: 0.8, green: 0.7, blue: 1.0))
+                            .background(nickname.isEmpty ? Color.gray : Color.purple)
                             .cornerRadius(10)
                             .shadow(radius: 5)
                     }
