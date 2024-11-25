@@ -1,10 +1,10 @@
 import SwiftUI
 
 struct SecondScreenView: View {
-    var name: String // Receive the nickname passed from the previous page
-    @Binding var path: [Destination] // Binding to the navigation path
-    @State private var numericValue: Int = 5 // Default value for numeric input
-    @State private var selectedEmoji: String? // State variable for selected emoji
+    var name: String
+    @Binding var path: [Destination]
+    @State private var numericValue: Int = 5
+    @State private var selectedEmoji: String?
 
     var body: some View {
         ZStack {
@@ -43,7 +43,7 @@ struct SecondScreenView: View {
                         .foregroundColor(.black)
 
                     Stepper("", value: $numericValue, in: 0...100)
-                        .labelsHidden() // Hides the label so only buttons are visible
+                        .labelsHidden()
                         .padding(.leading, 10)
                 }
                 .padding()
@@ -104,5 +104,5 @@ struct EmojiButton: View {
 }
 
 #Preview {
-    SecondScreenView(name: "John", path: .constant([])) // Pass a sample name and empty path for preview
+    SecondScreenView(name: "Zack", path: .constant([]))
 }

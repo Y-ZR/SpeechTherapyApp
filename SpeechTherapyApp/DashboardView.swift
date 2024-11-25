@@ -1,8 +1,8 @@
 import SwiftUI
 
 struct DashboardView: View {
-    var username: String // Receive the username
-    @State private var showComingSoonAlert: Bool = false // State for the locked card alert
+    var username: String
+    @State private var showComingSoonAlert: Bool = false
 
     var body: some View {
         NavigationView {
@@ -93,7 +93,7 @@ struct CardView: View {
     var emoji: String
     var buttonText: String
     var buttonAction: () -> Void
-    var isActive: Bool // Determines if the card is active or locked
+    var isActive: Bool
 
     var body: some View {
         ZStack {
@@ -136,7 +136,7 @@ struct CardView: View {
             
             // Overlay for inactive cards
             if !isActive {
-                Color.black.opacity(0.5) // Semi-transparent overlay
+                Color.black.opacity(0.5)
                     .cornerRadius(20)
                 VStack {
                     Image(systemName: "lock.fill")
@@ -152,5 +152,5 @@ struct CardView: View {
 
 
 #Preview {
-    DashboardView(username: "Sam") // Provide a sample username for preview
+    DashboardView(username: "Zack")
 }

@@ -7,11 +7,11 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State private var nickname: String = "" // State variable for nickname input
-    @State private var path: [Destination] = [] // Path array for navigation stack
+    @State private var nickname: String = ""
+    @State private var path: [Destination] = []
 
     var body: some View {
-        NavigationStack(path: $path) { // Bind the path to NavigationStack
+        NavigationStack(path: $path) {
             ZStack {
                 // Background gradient
                 LinearGradient(gradient: Gradient(colors: [Color(red: 1.0, green: 0.82, blue: 0.86),
@@ -37,7 +37,7 @@ struct ContentView: View {
                     // Next Button
                     Button(action: {
                         if !nickname.isEmpty {
-                            path.append(.secondScreen(name: nickname)) // Navigate to SecondScreenView
+                            path.append(.secondScreen(name: nickname))
                         }
                     }) {
                         Text("Next 🚀")
@@ -48,7 +48,7 @@ struct ContentView: View {
                             .cornerRadius(10)
                             .shadow(radius: 5)
                     }
-                    .disabled(nickname.isEmpty) // Disable button if nickname is empty
+                    .disabled(nickname.isEmpty)
                 }
                 .padding()
                 .background(Color.white)

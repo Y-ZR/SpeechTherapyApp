@@ -1,10 +1,10 @@
 import SwiftUI
 
 struct WordPinataGameView: View {
-    @State private var score: Int = 0 // State variable for the score
-    @State private var isListening: Bool = false // State to manage microphone button state
+    @State private var score: Int = 0
+    @State private var isListening: Bool = false
     @State private var feedbackText: String = "Click the microphone to start speaking!"
-    @State private var showMicrophoneAnimation: Bool = false // State for microphone button animation
+    @State private var showMicrophoneAnimation: Bool = false
 
     var body: some View {
         ZStack {
@@ -63,7 +63,7 @@ struct WordPinataGameView: View {
                     .padding(.horizontal)
                     .accessibilityLabel(feedbackText)
 
-                // Balloon Scorecard (Adjusted to be square)
+                // Balloon Scorecard
                 VStack {
                     Text("🪅")
                         .font(.system(size: 80))
@@ -77,7 +77,7 @@ struct WordPinataGameView: View {
                         .padding(.top, -10)
                 }
                 .padding()
-                .frame(width: 200, height: 200) // Set fixed width and height to make it square
+                .frame(width: 200, height: 200)
                 .background(
                     LinearGradient(
                         gradient: Gradient(colors: [
@@ -94,7 +94,6 @@ struct WordPinataGameView: View {
                         .stroke(Color.purple, lineWidth: 5)
                 )
                 .shadow(color: Color.gray.opacity(0.2), radius: 5, x: 0, y: 5)
-                // Removed .padding(.horizontal) to keep the scorecard square
             }
             .padding(.vertical)
         }
